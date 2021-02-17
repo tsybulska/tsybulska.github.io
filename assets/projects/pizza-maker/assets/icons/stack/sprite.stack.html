@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		<title>SVG stack preview | svg-sprite</title>
+		<style>@charset "UTF-8";body{padding:0;margin:0;color:#666;background:#fafafa;font-family:Arial,Helvetica,sans-serif;font-size:1em;line-height:1.4}header{display:block;padding:3em 3em 2em 3em;background-color:#fff}header p{margin:2em 0 0 0}section{border-top:1px solid #eee;padding:2em 3em 0 3em}section ul{margin:0;padding:0}section li{display:inline;display:inline-block;background-color:#fff;position:relative;margin:0 2em 2em 0;vertical-align:top;border:1px solid #ccc;padding:1em 1em 3em 1em;cursor:default}.icon-box{margin:0;width:144px;height:144px;position:relative;background:#ccc url("data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=") top left repeat;border:1px solid #ccc;display:table-cell;vertical-align:middle;text-align:center}.icon{display:inline;display:inline-block}h1{margin-top:0}h2{margin:0;padding:0;font-size:1em;font-weight:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:absolute;left:1em;right:1em;bottom:1em}footer{display:block;margin:0;padding:0 3em 3em 3em}footer p{margin:0;font-size:.7em}footer a{color:#0f7595;margin-left:0}</style>
+		
+<!--
+	
+Sprite shape dimensions
+====================================================================================================
+You will need to set the sprite shape dimensions via CSS when you use them as stack SVGs, otherwise
+they would become a huge 100% in size. You may use the following dimension classes for doing so.
+They might well be outsourced to an external stylesheet of course.
+
+-->
+
+<style type="text/css">
+	.svg-arrow-right-dims { width: 22px; height: 22px; }
+	.svg-cart-dims { width: 29px; height: 27px; }
+	.svg-cart-yellow-dims { width: 25px; height: 24px; }
+	.svg-clock-dims { width: 42px; height: 44px; }
+	.svg-logo-dims { width: 102px; height: 65px; }
+	.svg-more-dims { width: 38px; height: 40px; }
+	.svg-phone-dims { width: 45px; height: 45px; }
+	.svg-size-dims { width: 29px; height: 31px; }
+	.svg-warning-dims { width: 18px; height: 16px; }
+	.svg-Адриано-Итальяно-dims { width: 68px; height: 69px; }
+	.svg-Ананас-dims { width: 56px; height: 40px; }
+	.svg-Ананасовый-Экспресс-dims { width: 68px; height: 69px; }
+	.svg-Барбекю-dims { width: 42px; height: 33px; }
+	.svg-Бекон-dims { width: 56px; height: 32px; }
+	.svg-Белый-dims { width: 47px; height: 33px; }
+	.svg-Болгарский-Перец-dims { width: 69px; height: 70px; }
+	.svg-Ветчина-dims { width: 44px; height: 34px; }
+	.svg-Грибная-Цыпа-dims { width: 71px; height: 72px; }
+	.svg-Джони-Пеперони-dims { width: 69px; height: 71px; }
+	.svg-Дочь-Мясника-dims { width: 69px; height: 70px; }
+	.svg-Копченый-dims { width: 45px; height: 37px; }
+	.svg-Корнишоны-dims { width: 52px; height: 43px; }
+	.svg-Красный-dims { width: 43px; height: 29px; }
+	.svg-Креветки-dims { width: 43px; height: 33px; }
+	.svg-Лосось-dims { width: 59px; height: 27px; }
+	.svg-Лук-dims { width: 55px; height: 52px; }
+	.svg-Марго-Рита-dims { width: 68px; height: 69px; }
+	.svg-Маслины-dims { width: 57px; height: 37px; }
+	.svg-Мидии-dims { width: 43px; height: 36px; }
+	.svg-Моцарелла-dims { width: 60px; height: 40px; }
+	.svg-Охотничьи-dims { width: 48px; height: 29px; }
+	.svg-Пармезан-dims { width: 52px; height: 45px; }
+	.svg-Пепперони-dims { width: 46px; height: 28px; }
+	.svg-Перец-dims { width: 39px; height: 45px; }
+	.svg-Пивная-dims { width: 66px; height: 67px; }
+	.svg-Подводная-Братва-dims { width: 62px; height: 64px; }
+	.svg-Салат-dims { width: 51px; height: 49px; }
+	.svg-Салями-dims { width: 62px; height: 33px; }
+	.svg-Сырная-Банда-dims { width: 66px; height: 65px; }
+	.svg-Томат-dims { width: 49px; height: 47px; }
+	.svg-Томатный-Цыпленок-dims { width: 68px; height: 69px; }
+	.svg-Фарш-dims { width: 48px; height: 40px; }
+	.svg-Филе-dims { width: 53px; height: 43px; }
+	.svg-Халапеньо-dims { width: 68px; height: 35px; }
+	.svg-Цезарь-dims { width: 40px; height: 34px; }
+	.svg-Цезарь-Пицца-dims { width: 70px; height: 71px; }
+	.svg-Шампиньоны-dims { width: 61px; height: 40px; }
+</style>
+
+<!--
+====================================================================================================
+-->
+
+	</head>
+	<body>
+		<header>
+			<h1>SVG stack preview</h1>
+			<p>This preview features an SVG stack. Please have a look at the HTML source for further details and be aware of the following constraints:</p>
+			<ul>
+				<li>Your browser has to <a href="http://caniuse.com/#feat=svg-fragment" target="_blank">support SVG fragment identifiers</a> for SVG stacks to work.</li>
+				<li>Support for SVG fragment identifiers hasn't always been that decent. For older browsers you will have to use some prolyfill like <a href="https://github.com/preciousforever/SVG-Stacker/blob/master/fixsvgstack.jquery.js" target="_blank">fixsvgstack.jquery.js</a>.</li>
+			</ul>
+		</header>
+		<section>
+			
+<!--
+	
+SVG stack
+====================================================================================================
+These SVG images make use of fragment identifiers (IDs) to reference certain portions of the
+external sprite. By default, all shapes inside the sprite are hidden by CSS. The `:target` pseudo
+selector is used to show the very shape that is referenced by the fragment identifier.  
+
+-->
+
+			<ul>
+				
+				<li title="arrow-right">
+					<div class="icon-box">
+						
+						<!-- arrow-right -->
+						<img src="../sprite.svg#arrow-right" class="svg-arrow-right-dims" alt="arrow-right"/>
+						
+					</div>
+					<h2>arrow-right</h2>
+				</li>
+				<li title="cart">
+					<div class="icon-box">
+						
+						<!-- cart -->
+						<img src="../sprite.svg#cart" class="svg-cart-dims" alt="cart"/>
+						
+					</div>
+					<h2>cart</h2>
+				</li>
+				<li title="cart-yellow">
+					<div class="icon-box">
+						
+						<!-- cart-yellow -->
+						<img src="../sprite.svg#cart-yellow" class="svg-cart-yellow-dims" alt="cart-yellow"/>
+						
+					</div>
+					<h2>cart-yellow</h2>
+				</li>
+				<li title="clock">
+					<div class="icon-box">
+						
+						<!-- clock -->
+						<img src="../sprite.svg#clock" class="svg-clock-dims" alt="clock"/>
+						
+					</div>
+					<h2>clock</h2>
+				</li>
+				<li title="logo">
+					<div class="icon-box">
+						
+						<!-- logo -->
+						<img src="../sprite.svg#logo" class="svg-logo-dims" alt="logo"/>
+						
+					</div>
+					<h2>logo</h2>
+				</li>
+				<li title="more">
+					<div class="icon-box">
+						
+						<!-- more -->
+						<img src="../sprite.svg#more" class="svg-more-dims" alt="more"/>
+						
+					</div>
+					<h2>more</h2>
+				</li>
+				<li title="phone">
+					<div class="icon-box">
+						
+						<!-- phone -->
+						<img src="../sprite.svg#phone" class="svg-phone-dims" alt="phone"/>
+						
+					</div>
+					<h2>phone</h2>
+				</li>
+				<li title="size">
+					<div class="icon-box">
+						
+						<!-- size -->
+						<img src="../sprite.svg#size" class="svg-size-dims" alt="size"/>
+						
+					</div>
+					<h2>size</h2>
+				</li>
+				<li title="warning">
+					<div class="icon-box">
+						
+						<!-- warning -->
+						<img src="../sprite.svg#warning" class="svg-warning-dims" alt="warning"/>
+						
+					</div>
+					<h2>warning</h2>
+				</li>
+				<li title="Адриано-Итальяно">
+					<div class="icon-box">
+						
+						<!-- Адриано-Итальяно -->
+						<img src="../sprite.svg#Адриано-Итальяно" class="svg-Адриано-Итальяно-dims" alt="Адриано-Итальяно"/>
+						
+					</div>
+					<h2>Адриано-Итальяно</h2>
+				</li>
+				<li title="Ананас">
+					<div class="icon-box">
+						
+						<!-- Ананас -->
+						<img src="../sprite.svg#Ананас" class="svg-Ананас-dims" alt="Ананас"/>
+						
+					</div>
+					<h2>Ананас</h2>
+				</li>
+				<li title="Ананасовый-Экспресс">
+					<div class="icon-box">
+						
+						<!-- Ананасовый-Экспресс -->
+						<img src="../sprite.svg#Ананасовый-Экспресс" class="svg-Ананасовый-Экспресс-dims" alt="Ананасовый-Экспресс"/>
+						
+					</div>
+					<h2>Ананасовый-Экспресс</h2>
+				</li>
+				<li title="Барбекю">
+					<div class="icon-box">
+						
+						<!-- Барбекю -->
+						<img src="../sprite.svg#Барбекю" class="svg-Барбекю-dims" alt="Барбекю"/>
+						
+					</div>
+					<h2>Барбекю</h2>
+				</li>
+				<li title="Бекон">
+					<div class="icon-box">
+						
+						<!-- Бекон -->
+						<img src="../sprite.svg#Бекон" class="svg-Бекон-dims" alt="Бекон"/>
+						
+					</div>
+					<h2>Бекон</h2>
+				</li>
+				<li title="Белый">
+					<div class="icon-box">
+						
+						<!-- Белый -->
+						<img src="../sprite.svg#Белый" class="svg-Белый-dims" alt="Белый"/>
+						
+					</div>
+					<h2>Белый</h2>
+				</li>
+				<li title="Болгарский-Перец">
+					<div class="icon-box">
+						
+						<!-- Болгарский-Перец -->
+						<img src="../sprite.svg#Болгарский-Перец" class="svg-Болгарский-Перец-dims" alt="Болгарский-Перец"/>
+						
+					</div>
+					<h2>Болгарский-Перец</h2>
+				</li>
+				<li title="Ветчина">
+					<div class="icon-box">
+						
+						<!-- Ветчина -->
+						<img src="../sprite.svg#Ветчина" class="svg-Ветчина-dims" alt="Ветчина"/>
+						
+					</div>
+					<h2>Ветчина</h2>
+				</li>
+				<li title="Грибная-Цыпа">
+					<div class="icon-box">
+						
+						<!-- Грибная-Цыпа -->
+						<img src="../sprite.svg#Грибная-Цыпа" class="svg-Грибная-Цыпа-dims" alt="Грибная-Цыпа"/>
+						
+					</div>
+					<h2>Грибная-Цыпа</h2>
+				</li>
+				<li title="Джони-Пеперони">
+					<div class="icon-box">
+						
+						<!-- Джони-Пеперони -->
+						<img src="../sprite.svg#Джони-Пеперони" class="svg-Джони-Пеперони-dims" alt="Джони-Пеперони"/>
+						
+					</div>
+					<h2>Джони-Пеперони</h2>
+				</li>
+				<li title="Дочь-Мясника">
+					<div class="icon-box">
+						
+						<!-- Дочь-Мясника -->
+						<img src="../sprite.svg#Дочь-Мясника" class="svg-Дочь-Мясника-dims" alt="Дочь-Мясника"/>
+						
+					</div>
+					<h2>Дочь-Мясника</h2>
+				</li>
+				<li title="Копченый">
+					<div class="icon-box">
+						
+						<!-- Копченый -->
+						<img src="../sprite.svg#Копченый" class="svg-Копченый-dims" alt="Копченый"/>
+						
+					</div>
+					<h2>Копченый</h2>
+				</li>
+				<li title="Корнишоны">
+					<div class="icon-box">
+						
+						<!-- Корнишоны -->
+						<img src="../sprite.svg#Корнишоны" class="svg-Корнишоны-dims" alt="Корнишоны"/>
+						
+					</div>
+					<h2>Корнишоны</h2>
+				</li>
+				<li title="Красный">
+					<div class="icon-box">
+						
+						<!-- Красный -->
+						<img src="../sprite.svg#Красный" class="svg-Красный-dims" alt="Красный"/>
+						
+					</div>
+					<h2>Красный</h2>
+				</li>
+				<li title="Креветки">
+					<div class="icon-box">
+						
+						<!-- Креветки -->
+						<img src="../sprite.svg#Креветки" class="svg-Креветки-dims" alt="Креветки"/>
+						
+					</div>
+					<h2>Креветки</h2>
+				</li>
+				<li title="Лосось">
+					<div class="icon-box">
+						
+						<!-- Лосось -->
+						<img src="../sprite.svg#Лосось" class="svg-Лосось-dims" alt="Лосось"/>
+						
+					</div>
+					<h2>Лосось</h2>
+				</li>
+				<li title="Лук">
+					<div class="icon-box">
+						
+						<!-- Лук -->
+						<img src="../sprite.svg#Лук" class="svg-Лук-dims" alt="Лук"/>
+						
+					</div>
+					<h2>Лук</h2>
+				</li>
+				<li title="Марго-Рита">
+					<div class="icon-box">
+						
+						<!-- Марго-Рита -->
+						<img src="../sprite.svg#Марго-Рита" class="svg-Марго-Рита-dims" alt="Марго-Рита"/>
+						
+					</div>
+					<h2>Марго-Рита</h2>
+				</li>
+				<li title="Маслины">
+					<div class="icon-box">
+						
+						<!-- Маслины -->
+						<img src="../sprite.svg#Маслины" class="svg-Маслины-dims" alt="Маслины"/>
+						
+					</div>
+					<h2>Маслины</h2>
+				</li>
+				<li title="Мидии">
+					<div class="icon-box">
+						
+						<!-- Мидии -->
+						<img src="../sprite.svg#Мидии" class="svg-Мидии-dims" alt="Мидии"/>
+						
+					</div>
+					<h2>Мидии</h2>
+				</li>
+				<li title="Моцарелла">
+					<div class="icon-box">
+						
+						<!-- Моцарелла -->
+						<img src="../sprite.svg#Моцарелла" class="svg-Моцарелла-dims" alt="Моцарелла"/>
+						
+					</div>
+					<h2>Моцарелла</h2>
+				</li>
+				<li title="Охотничьи">
+					<div class="icon-box">
+						
+						<!-- Охотничьи -->
+						<img src="../sprite.svg#Охотничьи" class="svg-Охотничьи-dims" alt="Охотничьи"/>
+						
+					</div>
+					<h2>Охотничьи</h2>
+				</li>
+				<li title="Пармезан">
+					<div class="icon-box">
+						
+						<!-- Пармезан -->
+						<img src="../sprite.svg#Пармезан" class="svg-Пармезан-dims" alt="Пармезан"/>
+						
+					</div>
+					<h2>Пармезан</h2>
+				</li>
+				<li title="Пепперони">
+					<div class="icon-box">
+						
+						<!-- Пепперони -->
+						<img src="../sprite.svg#Пепперони" class="svg-Пепперони-dims" alt="Пепперони"/>
+						
+					</div>
+					<h2>Пепперони</h2>
+				</li>
+				<li title="Перец">
+					<div class="icon-box">
+						
+						<!-- Перец -->
+						<img src="../sprite.svg#Перец" class="svg-Перец-dims" alt="Перец"/>
+						
+					</div>
+					<h2>Перец</h2>
+				</li>
+				<li title="Пивная">
+					<div class="icon-box">
+						
+						<!-- Пивная -->
+						<img src="../sprite.svg#Пивная" class="svg-Пивная-dims" alt="Пивная"/>
+						
+					</div>
+					<h2>Пивная</h2>
+				</li>
+				<li title="Подводная-Братва">
+					<div class="icon-box">
+						
+						<!-- Подводная-Братва -->
+						<img src="../sprite.svg#Подводная-Братва" class="svg-Подводная-Братва-dims" alt="Подводная-Братва"/>
+						
+					</div>
+					<h2>Подводная-Братва</h2>
+				</li>
+				<li title="Салат">
+					<div class="icon-box">
+						
+						<!-- Салат -->
+						<img src="../sprite.svg#Салат" class="svg-Салат-dims" alt="Салат"/>
+						
+					</div>
+					<h2>Салат</h2>
+				</li>
+				<li title="Салями">
+					<div class="icon-box">
+						
+						<!-- Салями -->
+						<img src="../sprite.svg#Салями" class="svg-Салями-dims" alt="Салями"/>
+						
+					</div>
+					<h2>Салями</h2>
+				</li>
+				<li title="Сырная-Банда">
+					<div class="icon-box">
+						
+						<!-- Сырная-Банда -->
+						<img src="../sprite.svg#Сырная-Банда" class="svg-Сырная-Банда-dims" alt="Сырная-Банда"/>
+						
+					</div>
+					<h2>Сырная-Банда</h2>
+				</li>
+				<li title="Томат">
+					<div class="icon-box">
+						
+						<!-- Томат -->
+						<img src="../sprite.svg#Томат" class="svg-Томат-dims" alt="Томат"/>
+						
+					</div>
+					<h2>Томат</h2>
+				</li>
+				<li title="Томатный-Цыпленок">
+					<div class="icon-box">
+						
+						<!-- Томатный-Цыпленок -->
+						<img src="../sprite.svg#Томатный-Цыпленок" class="svg-Томатный-Цыпленок-dims" alt="Томатный-Цыпленок"/>
+						
+					</div>
+					<h2>Томатный-Цыпленок</h2>
+				</li>
+				<li title="Фарш">
+					<div class="icon-box">
+						
+						<!-- Фарш -->
+						<img src="../sprite.svg#Фарш" class="svg-Фарш-dims" alt="Фарш"/>
+						
+					</div>
+					<h2>Фарш</h2>
+				</li>
+				<li title="Филе">
+					<div class="icon-box">
+						
+						<!-- Филе -->
+						<img src="../sprite.svg#Филе" class="svg-Филе-dims" alt="Филе"/>
+						
+					</div>
+					<h2>Филе</h2>
+				</li>
+				<li title="Халапеньо">
+					<div class="icon-box">
+						
+						<!-- Халапеньо -->
+						<img src="../sprite.svg#Халапеньо" class="svg-Халапеньо-dims" alt="Халапеньо"/>
+						
+					</div>
+					<h2>Халапеньо</h2>
+				</li>
+				<li title="Цезарь">
+					<div class="icon-box">
+						
+						<!-- Цезарь -->
+						<img src="../sprite.svg#Цезарь" class="svg-Цезарь-dims" alt="Цезарь"/>
+						
+					</div>
+					<h2>Цезарь</h2>
+				</li>
+				<li title="Цезарь-Пицца">
+					<div class="icon-box">
+						
+						<!-- Цезарь-Пицца -->
+						<img src="../sprite.svg#Цезарь-Пицца" class="svg-Цезарь-Пицца-dims" alt="Цезарь-Пицца"/>
+						
+					</div>
+					<h2>Цезарь-Пицца</h2>
+				</li>
+				<li title="Шампиньоны">
+					<div class="icon-box">
+						
+						<!-- Шампиньоны -->
+						<img src="../sprite.svg#Шампиньоны" class="svg-Шампиньоны-dims" alt="Шампиньоны"/>
+						
+					</div>
+					<h2>Шампиньоны</h2>
+				</li>
+			</ul>
+
+<!--
+====================================================================================================
+-->
+
+		</section>
+		<footer>
+			<p>Generated at Wed, 17 Feb 2021 09:29:01 GMT by <a href="https://github.com/jkphl/svg-sprite" target="_blank">svg-sprite</a>.</p>
+		</footer>
+	</body>
+</html>
